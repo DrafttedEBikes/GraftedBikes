@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Grafted E-Bikes</title>
+    <meta name="description" content="Browse our selection of premium Surron E-Bikes at graftedebikes.com">
+    <meta name="author" content="Grafted E-Bikes">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reuse all the existing styles from index.html */
+        /* Reset & Base */
+        * {margin:0; padding:0; box-sizing:border-box;}
+        body {font-family:'Roboto', sans-serif; background:#0F0F0F; color:#fff; line-height:1.6;}
+        a {text-decoration:none; color:#fff; transition:0.3s;}
+        a:hover {color:#EBFF1A;}
+        .container {max-width:1200px; margin:0 auto; padding:0 20px;}
+        .btn {display:inline-block; background:#EBFF1A; color:#000; padding:12px 24px; border-radius:4px; font-weight:500; text-transform:uppercase; transition:0.3s;}
+        .btn:hover {background:#255B8A; color:#fff;}
+
+        /* Announcement Bar */
+        .announcement-bar {background:#EBFF1A; color:#000; text-align:center; padding:10px 0; position:relative;}
+        .announcement-bar a {color:#000;}
+        .announcement-bar button {position:absolute; right:20px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; font-size:18px;}
+
+        /* Header */
+        header {padding:20px 0; border-bottom:1px solid #333;}
+        .header-content {display:flex; justify-content:space-between; align-items:center;}
+        .logo {font-size:28px; font-weight:700; text-transform:uppercase; letter-spacing:1px;}
+        .logo span {color:#EBFF1A;}
+        nav ul {display:flex; list-style:none; gap:30px;}
+        nav ul li a {font-weight:500; position:relative;}
+        nav ul li a:after {content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:#EBFF1A; transition:0.3s;}
+        nav ul li a:hover:after {width:100%;}
+        .cart-icon {position:relative;}
+        .cart-count {position:absolute; top:-10px; right:-10px; background:#EBFF1A; color:#000; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold;}
+        .mobile-menu-btn {display:none; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;}
+
+        /* Page Header */
+        .page-header {padding:60px 0; text-align:center; background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)); margin-bottom:40px;}
+        .page-header h1 {font-size:36px; margin-bottom:15px; text-transform:uppercase;}
+        .breadcrumb {display:flex; justify-content:center; list-style:none; gap:10px; font-size:14px;}
+        .breadcrumb li:not(:last-child):after {content:'/'; margin-left:10px; color:#999;}
+        .breadcrumb a {color:#EBFF1A;}
+
+        /* Products Filter */
+        .products-filter {background:#1A1A1A; padding:20px; border-radius:8px; margin-bottom:40px;}
+        .filter-title {font-size:18px; margin-bottom:15px; color:#EBFF1A;}
+        .filter-options {display:flex; flex-wrap:wrap; gap:15px;}
+        .filter-group {flex:1; min-width:200px;}
+        .filter-group label {display:block; margin-bottom:8px; font-weight:500;}
+        .filter-group select, .filter-group input {width:100%; padding:10px; background:#252525; border:1px solid #333; border-radius:4px; color:#fff;}
+        .filter-buttons {display:flex; gap:10px; margin-top:20px;}
+        .filter-btn {padding:10px 20px; background:#333; border:none; border-radius:4px; color:#fff; cursor:pointer;}
+        .filter-btn.apply {background:#EBFF1A; color:#000;}
+
+        /* Products Grid */
+        .products-grid {display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:30px; margin-bottom:60px;}
+        .product-card {background:#1A1A1A; border-radius:12px; overflow:hidden; transition:0.3s; box-shadow:0 6px 15px rgba(0,0,0,0.3);}
+        .product-card:hover {transform:translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.5);}
+        .product-image {height:250px; background:#2A2A2A; display:flex; align-items:center; justify-content:center; color:#666; font-size:14px; overflow:hidden;}
+        .product-image img {width:100%; height:100%; object-fit:cover;}
+        .product-info {padding:20px;}
+        .product-title {font-size:18px; margin-bottom:10px; font-weight:500;}
+        .product-price {font-size:20px; font-weight:700; color:#EBFF1A; margin-bottom:15px;}
+        .product-status {display:inline-block; background:#EBFF1A; color:#000; padding:5px 10px; border-radius:4px; font-size:12px; font-weight:500;}
+        .product-actions {display:flex; justify-content:space-between; margin-top:15px;}
+        .view-details-btn {padding:8px 15px; background:#333; color:#fff; border:none; border-radius:4px; cursor:pointer; transition:0.3s;}
+        .view-details-btn:hover {background:#EBFF1A; color:#000;}
+        .add-to-cart-btn {padding:8px 15px; background:#EBFF1A; color:#000; border:none; border-radius:4px; cursor:pointer; font-weight:500; transition:0.3s;}
+        .add-to-cart-btn:hover {background:#255B8A; color:#fff;}
+
+        /* Pagination */
+        .pagination {display:flex; justify-content:center; gap:10px; margin-bottom:60px;}
+        .pagination-btn {padding:10px 15px; background:#1A1A1A; color:#fff; border:1px solid #333; border-radius:4px; cursor:pointer; transition:0.3s;}
+        .pagination-btn:hover, .pagination-btn.active {background:#EBFF1A; color:#000;}
+
+        /* Footer */
+        footer {background:#1A1A1A; padding:60px 0 30px;}
+        .footer-content {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:40px; margin-bottom:40px;}
+        .footer-column h3 {font-size:18px; margin-bottom:20px; position:relative; padding-bottom:10px;}
+        .footer-column h3:after {content:''; position:absolute; bottom:0; left:0; width:40px; height:2px; background:#EBFF1A;}
+        .footer-links {list-style:none;}
+        .footer-links li {margin-bottom:10px;}
+        .footer-links a:hover {color:#EBFF1A; padding-left:5px;}
+        .social-links {display:flex; gap:15px; margin-top:20px;}
+        .social-links a {display:flex; align-items:center; justify-content:center; width:40px; height:40px; background:#2A2A2A; border-radius:50%; transition:0.3s;}
+        .social-links a:hover {background:#EBFF1A; color:#000;}
+        .copyright {text-align:center; padding-top:30px; border-top:1px solid #333; font-size:14px; color:#999;}
+
+        /* Responsive */
+        @media(max-width:768px){
+            .mobile-menu-btn{display:block;}
+            nav{position:fixed; top:0; right:-100%; width:70%; height:100vh; background:#1A1A1A; z-index:100; padding:80px 30px; transition:0.3s;}
+            nav.active{right:0;}
+            nav ul{flex-direction:column; gap:20px;}
+            .close-menu{position:absolute; top:20px; right:20px; background:none; border:none; color:#fff; font-size:24px; cursor:pointer;}
+            .filter-options{flex-direction:column;}
+            .product-actions{flex-direction:column; gap:10px;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            <p>!!! Website checkout is down !!! Order through Telegram: <a href="https://t.me/surroncheap/" target="_blank">https://t.me/surroncheap/</a></p>
+            <button class="close-announcement"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo"><a href="index.html">Grafted <span>E-Bikes</span></a></div>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+                <nav id="main-nav">
+                    <button class="close-menu"><i class="fas fa-times"></i></button>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html" class="active">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Products</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li>Products</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Products Filter -->
+    <section class="products-filter">
+        <div class="container">
+            <h3 class="filter-title">Filter Products</h3>
+            <div class="filter-options">
+                <div class="filter-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="all">All E-Bikes</option>
+                        <option value="surron">Surron</option>
+                        <option value="stark">Stark</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-range">Price Range</label>
+                    <select id="price-range">
+                        <option value="all">All Prices</option>
+                        <option value="0-150">Under £150</option>
+                        <option value="150-200">£150 - £200</option>
+                        <option value="200+">Over £200</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="year">Year</label>
+                    <select id="year">
+                        <option value="all">All Years</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn apply">Apply Filters</button>
+                <button class="filter-btn">Reset</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="1.png" alt="2024 Stark Varg" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">2024 Stark Varg (80HP ONLY!)</h3>
+                        <p class="product-price">£179.99</p>
+                        <span class="product-status">On sale</span>
+                        <div class="product-actions">
+                            <button class="view-details-btn">Details</button>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="2.png" alt="2024 Surron Ultra Bee" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">2024 SURRON ULTRA BEE</h3>
+                        <p class="product-price">£169.99</p>
+                        <span class="product-status">On sale</span>
+                        <div class="product-actions">
+                            <button class="view-details-btn">Details</button>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="3.png" alt="2023 Surron MX Electric Bike" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">2023 SURRON MX ELECTRIC BIKE</h3>
+                        <p class="product-price">£159.99</p>
+                        <span class="product-status">On sale</span>
+                        <div class="product-actions">
+                            <button class="view-details-btn">Details</button>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="4.png" alt="2023 Surron LBX Electric Bike" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">2023 SURRON LBX ELECTRIC BIKE</h3>
+                        <p class="product-price">£159.99</p>
+                        <span class="product-status">On sale</span>
+                        <div class="product-actions">
+                            <button class="view-details-btn">Details</button>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="5.png" alt="2022 Surron MX Electric Bike" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">2022 SURRON MX ELECTRIC BIKE</h3>
+                        <p class="product-price">£149.99</p>
+                        <span class="product-status">On sale</span>
+                        <div class="product-actions">
+                            <button class="view-details-btn">Details</button>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="6.png" alt="Surron Light Bee X" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">SURRON LIGHT BEE X</h3>
+                        <p class="product-price">£139.99</p>
+                        <span class="product-status">Limited Stock</span>
+                        <div class="product-actions">
+                            <button class="view-details-btn">Details</button>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">Next →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Grafted E-Bikes</h3>
+                    <p>Your trusted partner for high-quality Surron electric bikes at unbeatable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@graftedebikes.com</li>
+                        <li><i class="fab fa-telegram"></i> t.me/surroncheap</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Grafted E-Bikes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const nav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.add('active');
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+            nav.classList.remove('active');
+        });
+        
+        // Close announcement bar
+        const closeAnnouncement = document.querySelector('.close-announcement');
+        const announcementBar = document.querySelector('.announcement-bar');
+        
+        if (closeAnnouncement && announcementBar) {
+            closeAnnouncement.addEventListener('click', () => {
+                announcementBar.style.display = 'none';
+            });
+        }
+
+        // Add to cart functionality
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        const cartCount = document.querySelector('.cart-count');
+        let count = 0;
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                count++;
+                cartCount.textContent = count;
+                alert('Product added to cart!');
+            });
+        });
+    </script>
+</body>
+</html>
