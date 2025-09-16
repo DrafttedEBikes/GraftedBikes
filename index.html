@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Grafted E-Bikes</title>
+    <meta name="description" content="Buy your Surron E-Bike with huge discounts at graftedebikes.com">
+    <meta name="author" content="Grafted E-Bikes">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset & Base */
+        * {margin:0; padding:0; box-sizing:border-box;}
+        body {font-family:'Roboto', sans-serif; background:#0F0F0F; color:#fff; line-height:1.6;}
+        a {text-decoration:none; color:#fff; transition:0.3s;}
+        a:hover {color:#EBFF1A;}
+        .container {max-width:1200px; margin:0 auto; padding:0 20px;}
+        .btn {display:inline-block; background:#EBFF1A; color:#000; padding:12px 24px; border-radius:4px; font-weight:500; text-transform:uppercase; transition:0.3s;}
+        .btn:hover {background:#255B8A; color:#fff;}
+
+        /* Announcement Bar */
+        .announcement-bar {background:#EBFF1A; color:#000; text-align:center; padding:10px 0; position:relative;}
+        .announcement-bar a {color:#000;}
+        .announcement-bar button {position:absolute; right:20px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; font-size:18px;}
+
+        /* Header */
+        header {padding:20px 0; border-bottom:1px solid #333;}
+        .header-content {display:flex; justify-content:space-between; align-items:center;}
+        .logo {font-size:28px; font-weight:700; text-transform:uppercase; letter-spacing:1px;}
+        .logo span {color:#EBFF1A;}
+        nav ul {display:flex; list-style:none; gap:30px;}
+        nav ul li a {font-weight:500; position:relative;}
+        nav ul li a:after {content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:#EBFF1A; transition:0.3s;}
+        nav ul li a:hover:after {width:100%;}
+        .cart-icon {position:relative;}
+        .cart-count {position:absolute; top:-10px; right:-10px; background:#EBFF1A; color:#000; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold;}
+        .mobile-menu-btn {display:none; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;}
+
+        /* Hero */
+        .hero {padding:80px 0; text-align:center; background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)); margin-bottom:60px;}
+        .hero h1 {font-size:48px; margin-bottom:20px; text-transform:uppercase;}
+        .hero p {font-size:18px; max-width:700px; margin:0 auto 30px;}
+
+        /* Products */
+        .products-section {padding:40px 0 80px;}
+        .section-title {text-align:center; font-size:36px; margin-bottom:50px; text-transform:uppercase; position:relative; padding-bottom:15px;}
+        .section-title:after {content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:100px; height:3px; background:#EBFF1A;}
+        .products-grid {display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:30px;}
+        .product-card {background:#1A1A1A; border-radius:12px; overflow:hidden; transition:0.3s; box-shadow:0 6px 15px rgba(0,0,0,0.3);}
+        .product-card:hover {transform:translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.5);}
+        .product-image {height:250px; background:#2A2A2A; display:flex; align-items:center; justify-content:center; color:#666; font-size:14px; overflow:hidden;}
+        .product-image img {width:100%; height:100%; object-fit:cover;}
+        .product-info {padding:20px;}
+        .product-title {font-size:18px; margin-bottom:10px; font-weight:500;}
+        .product-price {font-size:20px; font-weight:700; color:#EBFF1A; margin-bottom:15px;}
+        .product-status {display:inline-block; background:#EBFF1A; color:#000; padding:5px 10px; border-radius:4px; font-size:12px; font-weight:500;}
+        .product-details-btn {width:100%; margin-top:15px; padding:10px; background:#333; color:#fff; border:none; border-radius:4px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:0.3s;}
+        .product-details-btn:hover {background:#444;}
+        .product-details-content {max-height:0; overflow:hidden; transition:max-height 0.5s ease;}
+        .product-details-content.active {max-height:500px; padding:15px; background:#252525; border-radius:0 0 8px 8px;}
+        .product-specs {list-style:none; margin-top:10px;}
+        .product-specs li {margin-bottom:8px; display:flex;}
+        .product-specs li span:first-child {min-width:120px; font-weight:500; color:#EBFF1A;}
+
+        /* Features */
+        .features-section {padding:80px 0; background:#1A1A1A;}
+        .features-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:40px; margin-top:50px;}
+        .feature {text-align:center; padding:30px; background:#252525; border-radius:12px;}
+        .feature-icon {font-size:40px; color:#EBFF1A; margin-bottom:20px;}
+        .feature-title {font-size:20px; margin-bottom:15px;}
+
+        /* How to Buy CTA */
+        .how-to-buy-cta {padding:80px 0; text-align:center; background:#255B8A;}
+        .how-to-buy-cta h2 {font-size:36px; margin-bottom:20px;}
+        .how-to-buy-cta p {max-width:700px; margin:0 auto 30px; font-size:18px;}
+        
+        /* Footer */
+        footer {background:#1A1A1A; padding:60px 0 30px;}
+        .footer-content {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:40px; margin-bottom:40px;}
+        .footer-column h3 {font-size:18px; margin-bottom:20px; position:relative; padding-bottom:10px;}
+        .footer-column h3:after {content:''; position:absolute; bottom:0; left:0; width:40px; height:2px; background:#EBFF1A;}
+        .footer-links {list-style:none;}
+        .footer-links li {margin-bottom:10px;}
+        .footer-links a:hover {color:#EBFF1A; padding-left:5px;}
+        .social-links {display:flex; gap:15px; margin-top:20px;}
+        .social-links a {display:flex; align-items:center; justify-content:center; width:40px; height:40px; background:#2A2A2A; border-radius:50%; transition:0.3s;}
+        .social-links a:hover {background:#EBFF1A; color:#000;}
+        .copyright {text-align:center; padding-top:30px; border-top:1px solid #333; font-size:14px; color:#999;}
+
+        /* Responsive */
+        @media(max-width:768px){
+            .mobile-menu-btn{display:block;}
+            nav{position:fixed; top:0; right:-100%; width:70%; height:100vh; background:#1A1A1A; z-index:100; padding:80px 30px; transition:0.3s;}
+            nav.active{right:0;}
+            nav ul{flex-direction:column; gap:20px;}
+            .close-menu{position:absolute; top:20px; right:20px; background:none; border:none; color:#fff; font-size:24px; cursor:pointer;}
+            .hero h1{font-size:36px;}
+            .hero p{font-size:16px;}
+            .section-title{font-size:28px;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            <p>!!! Website checkout is down !!! Order through Telegram: <a href="https://t.me/surroncheap/" target="_blank">https://t.me/surroncheap/</a></p>
+            <button class="close-announcement"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo"><a href="/">Grafted <span>E-Bikes</span></a></div>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+                <nav id="main-nav">
+                    <button class="close-menu"><i class="fas fa-times"></i></button>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="how-to-buy.html">How to Buy</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Premium Electric Bikes</h1>
+            <p>Experience the future of mobility with our high-performance Surron e-bikes. Get yours today with exclusive discounts!</p>
+            <a href="how-to-buy.html" class="btn">How to Buy</a>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="1.png" alt="2024 Stark Varg" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">2024 Stark Varg (80HP ONLY!)</h3>
+                        <p class="product-price">£179.99</p>
+                        <span class="product-status">On sale</span>
+                        <button class="product-details-btn">Product Details <i class="fas fa-chevron-down"></i></button>
+                        <div class="product-details-content">
+                            <p>The 2024 Stark Varg is the most powerful electric dirt bike ever made, featuring 80 horsepower and revolutionary performance.</p>
+                            <ul class="product-specs">
+                                <li><span>Power:</span> <span>80 HP</span></li>
+                                <li><span>Battery:</span> <span>6.5 kWh</span></li>
+                                <li><span>Range:</span> <span>Up to 6 hours</span></li>
+                                <li><span>Weight:</span> <span>110 kg</span></li>
+                                <li><span>Charging:</span> <span>2 hours</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="2.png" alt="2024 Surron Ultra Bee" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">2024 SURRON ULTRA BEE</h3>
+                        <p class="product-price">£169.99</p>
+                        <span class="product-status">On sale</span>
+                        <button class="product-details-btn">Product Details <i class="fas fa-chevron-down"></i></button>
+                        <div class="product-details-content">
+                            <p>The 2024 Surron Ultra Bee is the ultimate high-performance electric enduro bike with exceptional power and handling.</p>
+                            <ul class="product-specs">
+                                <li><span>Power:</span> <span>12 kW</span></li>
+                                <li><span>Battery:</span> <span>3.2 kWh</span></li>
+                                <li><span>Range:</span> <span>Up to 100 km</span></li>
+                                <li><span>Weight:</span> <span>82 kg</span></li>
+                                <li><span>Top Speed:</span> <span>110 km/h</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="3.png" alt="2023 Surron MX Electric Bike" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">2023 SURRON MX ELECTRIC BIKE</h3>
+                        <p class="product-price">£159.99</p>
+                        <span class="product-status">On sale</span>
+                        <button class="product-details-btn">Product Details <i class="fas fa-chevron-down"></i></button>
+                        <div class="product-details-content">
+                            <p>The 2023 Surron MX is a lightweight and agile electric dirt bike perfect for motocross and trail riding.</p>
+                            <ul class="product-specs">
+                                <li><span>Power:</span> <span>6 kW</span></li>
+                                <li><span>Battery:</span> <span>2.4 kWh</span></li>
+                                <li><span>Range:</span> <span>Up to 80 km</span></li>
+                                <li><span>Weight:</span> <span>50 kg</span></li>
+                                <li><span>Top Speed:</span> <span>73 km/h</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="4.png" alt="2023 Surron LBX Electric Bike" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">2023 SURRON LBX ELECTRIC BIKE</h3>
+                        <p class="product-price">£159.99</p>
+                        <span class="product-status">On sale</span>
+                        <button class="product-details-btn">Product Details <i class="fas fa-chevron-down"></i></button>
+                        <div class="product-details-content">
+                            <p>The 2023 Surron LBX is a versatile electric bike designed for both urban commuting and off-road adventures.</p>
+                            <ul class="product-specs">
+                                <li><span>Power:</span> <span>6 kW</span></li>
+                                <li><span>Battery:</span> <span>2.4 kWh</span></li>
+                                <li><span>Range:</span> <span>Up to 85 km</span></li>
+                                <li><span>Weight:</span> <span>52 kg</span></li>
+                                <li><span>Top Speed:</span> <span>75 km/h</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="5.png" alt="2022 Surron MX Electric Bike" onerror="this.style.display='none'; this.parentNode.innerHTML='<p>Image not found</p>';">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">2022 SURRON MX ELECTRIC BIKE</h3>
+                        <p class="product-price">£149.99</p>
+                        <span class="product-status">On sale</span>
+                        <button class="product-details-btn">Product Details <i class="fas fa-chevron-down"></i></button>
+                        <div class="product-details-content">
+                            <p>The 2022 Surron MX offers exceptional value with proven performance and reliability for electric dirt bike enthusiasts.</p>
+                            <ul class="product-specs">
+                                <li><span>Power:</span> <span>6 kW</span></li>
+                                <li><span>Battery:</span> <span>2.2 kWh</span></li>
+                                <li><span>Range:</span> <span>Up to 75 km</span></li>
+                                <li><span>Weight:</span> <span>50 kg</span></li>
+                                <li><span>Top Speed:</span> <span>70 km/h</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature"><div class="feature-icon"><i class="fas fa-truck"></i></div><h3 class="feature-title">Fast Shipping</h3><p>We deliver worldwide with fast and secure shipping options.</p></div>
+                <div class="feature"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3 class="feature-title">Quality Guarantee</h3><p>All our products come with a warranty and quality guarantee.</p></div>
+                <div class="feature"><div class="feature-icon"><i class="fas fa-headset"></i></div><h3 class="feature-title">24/7 Support</h3><p>Our customer support team is available to help you anytime.</p></div>
+                <div class="feature"><div class="feature-icon"><i class="fas fa-tag"></i></div><h3 class="feature-title">Best Prices</h3><p>We offer the best prices for premium quality e-bikes.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Buy CTA -->
+    <section class="how-to-buy-cta">
+        <div class="container">
+            <h2>Ready to Own Your Premium E-Bike?</h2>
+            <p>Learn about our simple and secure purchasing process. We offer multiple payment methods to make your buying experience smooth and hassle-free.</p>
+            <a href="how-to-buy.html" class="btn">How to Buy</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Grafted E-Bikes</h3>
+                    <p>Your trusted partner for high-quality Surron electric bikes at unbeatable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="how-to-buy.html">How to Buy</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@graftedebikes.com</li>
+                        <li><i class="fab fa-telegram"></i> t.me/surroncheap</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Grafted E-Bikes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const nav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.add('active');
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+            nav.classList.remove('active');
+        });
+        
+        // Close announcement bar
+        const closeAnnouncement = document.querySelector('.close-announcement');
+        const announcementBar = document.querySelector('.announcement-bar');
+        
+        if (closeAnnouncement && announcementBar) {
+            closeAnnouncement.addEventListener('click', () => {
+                announcementBar.style.display = 'none';
+            });
+        }
+
+        // Product details toggle
+        const detailButtons = document.querySelectorAll('.product-details-btn');
+        
+        detailButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                content.classList.toggle('active');
+                
+                if (content.classList.contains('active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
